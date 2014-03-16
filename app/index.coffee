@@ -1,7 +1,7 @@
 intercessor = require 'intercessor'
 
-app = new intercessor.App 'intercessor-example'
-app.title = 'Intercessor Example'
+app = new intercessor.App 'git-visualization'
+app.title = 'Git Visualization'
 app.dir = __dirname + '/..'
 app.stylFile = __dirname + '/../styles/index.styl'
 app.clientFile = __dirname + '/../client/index.coffee'
