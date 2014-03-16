@@ -1,6 +1,9 @@
 extends intercessor-layout
 
 block content
+  #plot
 
 block scripts
-  script(src='http://d3js.org/d3.v3.min.js"')
+  script(src='http://d3js.org/d3.v3.min.js')
+  script.
+    window.commitsCsvFile = '#{app.static}commits.csv';
