@@ -1,6 +1,8 @@
 # Git Visualization
 
-Visualize your local Git repos.
+Visualize local Git repos. (Work in progress.)
+
+![Git Visualization](screenshot.png)
 
 ## Install
 
