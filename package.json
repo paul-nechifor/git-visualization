@@ -2,12 +2,12 @@
   "name": "git-visualization",
   "version": "0.0.1",
   "author": "Paul Nechifor <paul@nechifor.net> (http://nechifor.net/)",
-  "private": false,
   "scripts": {
-    "build": "intercessor"
+    "build": "intercessor",
+    "start": "node build/app.js"
   },
   "dependencies": {
-    "intercessor": ">=0.0.1"
+    "intercessor": ">=0.2.3"
   },
   "repository": {
     "type": "git",
