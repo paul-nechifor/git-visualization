@@ -6,14 +6,16 @@ class Plot
     @minDate = Number.MAX_VALUE
     @maxDate = -Number.MAX_VALUE
     @infobox = null
+    @infoboxWidth = 300
     @width = $(window).width()
     @height = $(window).height() * 0.5
     @verticalScale = @height / @width
     @padding = 0.01
 
   load: ->
-    @infobox = $('<div class="infobox"/>')
-      .appendTo $ 'body'
+    @infobox = $ '<div class="infobox"/>'
+    .css 'width', @infoboxWidth
+    .appendTo $ 'body'
     @infobox.hide()
 
     d3.csv @commitsCsvFile, (err, data) =>
@@ -36,6 +38,7 @@ class Plot
 
     for commit, i in @commits
       commit.x = (i / @commits.length) * (1 - 2 * @padding) + @padding
+    return
 
   plotCommits: ->
     svg = d3.select '#plot'
@@ -74,19 +77,28 @@ class Plot
   showInfo: (c) ->
     @infobox.show()
     @infobox.html """
-      <strong>Message:</strong> #{c.message} <br/>
-      <strong>Date:</strong> #{c.dateObj} <br/>
-      <strong>Changes:</strong> added #{c.added}, deleted #{c.deleted}
-
+      <p class="date">#{@getFormatedDate c}</p>
+      <p class="changes">
+        <span class="added">+#{c.added}</span>,
+        <span class="deleted">–#{c.deleted}</span>
+      </p>
+      <p class="message">#{c.message}</p>
     """
-    @infobox.css
-      left: (d3.event.pageX + 10) + 'px'
-      top: (d3.event.pageY + 10) + 'px'
+    @moveInfo c
 
   moveInfo: (c) ->
+    padding = 10
+    x =
+      if d3.event.pageX + @infoboxWidth + 2 * padding > @width
+        d3.event.pageX - @infoboxWidth - padding
+      else
+        d3.event.pageX + padding
     @infobox.css
-      left: (d3.event.pageX + 10) + 'px'
-      top: (d3.event.pageY + 10) + 'px'
+      left: x + 'px'
+      top: (d3.event.pageY + padding) + 'px'
+
+  getFormatedDate: (c) ->
+    c.dateObj.toISOString().replace('T', ' ').replace '.000Z', ''
 
   hideInfo: (c) ->
     @infobox.hide()

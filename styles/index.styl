@@ -7,9 +7,26 @@ svg
   fill none
 
 .infobox
-  width 300px
-  font-size 12px
+  font-size 14px
   background-color #ddd
   border 1px solid #ccc
   padding 5px
   position fixed
+  p
+    margin 0
+  p.date, p.changes
+    display block
+    position absolute
+    top 5px
+  p.date
+    left 5px
+    color #555
+  p.changes
+    right 5px
+    .added
+      color #14b814
+    .deleted
+      color #b81414
+  p.message
+    margin-top 24px
+    color #000
