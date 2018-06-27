@@ -1,3 +1,7 @@
+# This repository has been moved to [gitlab.com/paul-nechifor/git-visualization](http://gitlab.com/paul-nechifor/git-visualization).
+
+Old readme:
+
 # Git Visualization
 
 Visualize local Git repos. (Work in progress.)
